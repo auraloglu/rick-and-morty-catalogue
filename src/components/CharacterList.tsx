@@ -43,11 +43,15 @@ function CharacterList() {
     if (gender === "all") {
       setGender("")
     }
+    setPage(1)
 
     setIsLoading(true)
 
-    fetchDebouncedSearchResults()
-    setPage(1)
+    if (searchTerm) {
+      fetchDebouncedSearchResults()
+    } else {
+      fetchList()
+    }
 
     return () => fetchDebouncedSearchResults.clear()
   }, [searchTerm, gender])
