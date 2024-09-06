@@ -7,10 +7,32 @@ const axiosInstance = axios.create({
   timeout: 5000,
 })
 
-export async function getCharacterList({ page }: { page: number }) {
-  const response = await axiosInstance.get(`/character?page=${page}`)
+export async function getCharacterList({
+  page,
+  searchTerm,
+}: {
+  page: number
+  searchTerm: string
+}) {
+  // const response = await axiosInstance.get(
+  //   `/character?page=${page}&name=${searchTerm}`
+  // )
 
-  console.log(response)
+  // console.log(response)
 
-  return response.data
+  // return response.data
+
+  try {
+    const response = await axiosInstance.get(
+      `/character?page=${page}&name=${searchTerm}`
+    )
+
+    return response.data
+  } catch (error) {
+    const { response } = error
+    const { request, ...errorObject } = response // take everything but 'request'
+    console.log(errorObject)
+
+    return []
+  }
 }
