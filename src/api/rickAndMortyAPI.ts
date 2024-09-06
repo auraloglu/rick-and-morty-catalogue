@@ -10,21 +10,15 @@ const axiosInstance = axios.create({
 export async function getCharacterList({
   page,
   searchTerm,
+  gender,
 }: {
   page: number
   searchTerm: string
+  gender: string
 }) {
-  // const response = await axiosInstance.get(
-  //   `/character?page=${page}&name=${searchTerm}`
-  // )
-
-  // console.log(response)
-
-  // return response.data
-
   try {
     const response = await axiosInstance.get(
-      `/character?page=${page}&name=${searchTerm}`
+      `/character?page=${page}&name=${searchTerm}&gender=${gender}`
     )
 
     return response.data

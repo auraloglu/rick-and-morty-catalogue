@@ -3,6 +3,14 @@ import debounce from "debounce"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import CharacterCard from "@/components/CharacterCard"
 import CharacterPagination from "@/components/CharacterPagination"
@@ -11,11 +19,12 @@ import Spinner from "@/components/Spinner"
 import { getCharacterList } from "@/api/rickAndMortyAPI"
 
 function CharacterList() {
-  const [page, setPage] = useState<number>(1)
-  const [totalPages, setTotalPages] = useState<number>(1)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
   const [characterList, setCharacterList] = useState([])
 
-  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [searchTerm, setSearchTerm] = useState("")
+  const [gender, setGender] = useState("")
 
   const [isLoading, setIsLoading] = useState(true)
   const [noResult, setNoResult] = useState(false)
@@ -25,18 +34,23 @@ function CharacterList() {
   }, [page])
 
   useEffect(() => {
+    // shadcn does not allow option value to be empty.
+    // this lines for reseting gender filter
+    if (gender === "all") {
+      setGender("")
+    }
+
     setIsLoading(true)
 
     fetchDebouncedSearchResults()
     setPage(1)
 
     return () => fetchDebouncedSearchResults.clear()
-  }, [searchTerm])
+  }, [searchTerm, gender])
 
   const fetchList = async () => {
-    const data = await getCharacterList({ page, searchTerm })
+    const data = await getCharacterList({ page, searchTerm, gender })
 
-    console.log(data)
     setIsLoading(false)
 
     if (data.results) {
@@ -52,15 +66,36 @@ function CharacterList() {
 
   return (
     <>
-      <div className="grid w-full max-w-sm items-center gap-1.5 ml-4 mb-4">
-        <Label htmlFor="name">Name</Label>
-        <Input
-          type="name"
-          id="name"
-          placeholder="E.g Morty"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <div className="flex row items-center gap-4">
+        <div className="grid w-full max-w-sm items-center gap-1.5 ml-4 mb-4">
+          <Label htmlFor="name">Name</Label>
+          <Input
+            type="name"
+            id="name"
+            placeholder="E.g Morty"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <div className="grid w-full max-w-sm items-center gap-1.5 ml-4 mb-4">
+          <Label htmlFor="name">Gender</Label>
+
+          <Select onValueChange={(value) => setGender(value)}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Gender" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="female">Female</SelectItem>
+                <SelectItem value="male">Male</SelectItem>
+                <SelectItem value="genderless ">Genderless</SelectItem>
+                <SelectItem value="unknown">unknown</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
