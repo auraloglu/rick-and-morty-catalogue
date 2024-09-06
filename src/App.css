@@ -1,3 +1,8 @@
+body {
+  background-color: #001325 !important;
+  color: white !important;
+}
+
 #root {
   min-height: 100vh;
   max-width: 1280px;

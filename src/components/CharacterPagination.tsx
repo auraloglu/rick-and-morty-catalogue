@@ -32,7 +32,9 @@ function CharacterPagination({
         </PaginationItem>
 
         <PaginationItem className="mx-4">
-          <div>{currentPage}</div>
+          <div>
+            {currentPage} / {totalPages}
+          </div>
         </PaginationItem>
         <PaginationItem className="cursor-pointer select-none">
           <PaginationNext

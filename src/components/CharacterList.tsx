@@ -18,6 +18,10 @@ import Spinner from "@/components/Spinner"
 
 import { getCharacterList } from "@/api/rickAndMortyAPI"
 
+import Logo from "@/assets/Rick_and_Morty.png"
+
+import "@/components/character-list.scss"
+
 function CharacterList() {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
@@ -66,7 +70,7 @@ function CharacterList() {
 
   return (
     <>
-      <div className="flex row items-center gap-4">
+      <div className="flex md:flex-row flex-col items-center gap-4">
         <div className="grid w-full max-w-sm items-center gap-1.5 ml-4 mb-4">
           <Label htmlFor="name">Name</Label>
           <Input
@@ -96,9 +100,13 @@ function CharacterList() {
             </SelectContent>
           </Select>
         </div>
+
+        <div>
+          <img src={Logo} style={{ maxWidth: "300px" }} />
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mb-32 grid text-center sm:justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         {isLoading && <Spinner />}
         {noResult ? (
           <div> No Result</div>
