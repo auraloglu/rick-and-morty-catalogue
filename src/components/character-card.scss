@@ -1,0 +1,43 @@
+.character-card {
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+
+  height: 100%;
+
+  cursor: pointer;
+
+  &:hover {
+    .character-card-image-container > .character-image {
+      transform: scale(1.1);
+    }
+    .character-name {
+      color: #646cff;
+    }
+  }
+
+  .character-card-image-container {
+    max-height: 240px;
+    height: 240px;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    .character-image {
+      max-height: 240px;
+      height: 240px;
+
+      border-radius: 20px;
+
+      transition: all 0.2s;
+    }
+  }
+
+  .character-name {
+    margin-top: 6px;
+
+    transition: all 0.2s;
+  }
+}
