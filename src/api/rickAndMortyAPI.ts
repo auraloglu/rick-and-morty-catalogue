@@ -11,4 +11,6 @@ export async function getCharacterList({ page }: { page: number }) {
   const response = await axiosInstance.get(`/character?page=${page}`)
 
   console.log(response)
+
+  return response.data
 }

@@ -1,28 +1,50 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
 
-function CharacterPagination() {
+interface CharacterPaginationProps {
+  totalPages: number
+  currentPage: number
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+}
+
+function CharacterPagination({
+  totalPages,
+  currentPage,
+  setCurrentPage,
+}: CharacterPaginationProps) {
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
+        <PaginationItem className="cursor-pointer select-none">
+          <PaginationPrevious
+            onClick={() => setCurrentPage(currentPage - 1)}
+            aria-disabled={currentPage <= 1}
+            tabIndex={currentPage <= 1 ? -1 : undefined}
+            className={
+              currentPage <= 1 ? "pointer-events-none opacity-50" : undefined
+            }
+          />
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
+
+        <PaginationItem className="mx-4">
+          <div>{currentPage}</div>
         </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
+        <PaginationItem className="cursor-pointer select-none">
+          <PaginationNext
+            onClick={() => setCurrentPage(currentPage + 1)}
+            aria-disabled={currentPage >= totalPages}
+            tabIndex={currentPage >= totalPages ? -1 : undefined}
+            className={
+              currentPage >= totalPages
+                ? "pointer-events-none opacity-50"
+                : undefined
+            }
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
