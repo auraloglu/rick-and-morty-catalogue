@@ -109,7 +109,7 @@ function CharacterList() {
       <div className="mb-32 grid text-center sm:justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         {isLoading && <Spinner />}
         {noResult ? (
-          <div> No Result</div>
+          <div className="text-center"> No Result</div>
         ) : (
           characterList.map((character: any) => {
             return (
@@ -123,11 +123,13 @@ function CharacterList() {
         )}
         {}
       </div>
-      <CharacterPagination
-        totalPages={totalPages}
-        currentPage={page}
-        setCurrentPage={setPage}
-      />
+      {!noResult && (
+        <CharacterPagination
+          totalPages={totalPages}
+          currentPage={page}
+          setCurrentPage={setPage}
+        />
+      )}
     </>
   )
 }
