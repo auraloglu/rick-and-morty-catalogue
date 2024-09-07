@@ -1,0 +1,30 @@
+.character-page {
+  position: relative;
+  width: 90vw;
+
+  .navigation {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+    }
+
+    .prev-button {
+      left: 0;
+    }
+
+    .next-button {
+      right: 0;
+    }
+  }
+
+  .character-details {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+}

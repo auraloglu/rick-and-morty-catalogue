@@ -124,6 +124,7 @@ function CharacterList() {
                 name={character.name}
                 key={character.id}
                 image={character.image}
+                id={character.id}
               />
             )
           })

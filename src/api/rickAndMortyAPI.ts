@@ -38,3 +38,17 @@ export async function getCharacterList({
     return []
   }
 }
+
+export async function getCharacter(id: number) {
+  try {
+    const response = await axiosInstance.get(`/character/${id}`)
+
+    return response.data
+  } catch (error) {
+    const { response } = error
+    const { request, ...errorObject } = response // take everything but 'request'
+    console.log(errorObject)
+
+    return null
+  }
+}
