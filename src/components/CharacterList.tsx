@@ -38,11 +38,6 @@ function CharacterList() {
   }, [page])
 
   useEffect(() => {
-    // shadcn does not allow option value to be empty.
-    // this lines for reseting gender filter
-    if (gender === "all") {
-      setGender("")
-    }
     setPage(1)
 
     setIsLoading(true)
@@ -72,6 +67,14 @@ function CharacterList() {
 
   const fetchDebouncedSearchResults = debounce(fetchList, 500)
 
+  const handleSelectValue = (value: string) => {
+    if (value === "all") {
+      setGender("")
+    } else {
+      setGender(value)
+    }
+  }
+
   return (
     <>
       <div className="flex md:flex-row flex-col items-center gap-4">
@@ -89,7 +92,7 @@ function CharacterList() {
         <div className="grid w-full max-w-sm items-center gap-1.5 ml-4 mb-4">
           <Label htmlFor="name">Gender</Label>
 
-          <Select onValueChange={(value) => setGender(value)}>
+          <Select onValueChange={handleSelectValue} value={gender}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Gender" />
             </SelectTrigger>
@@ -110,7 +113,7 @@ function CharacterList() {
         </div>
       </div>
 
-      <div className="mb-32 grid text-center sm:justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="relative mb-32 grid text-center sm:justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         {isLoading && <Spinner />}
         {noResult ? (
           <div className="text-center"> No Result</div>

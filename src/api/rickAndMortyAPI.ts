@@ -1,4 +1,5 @@
 import axios from "axios"
+import qs from "qs"
 
 const RICK_AND_MORTY_API = "https://rickandmortyapi.com/api"
 
@@ -17,9 +18,16 @@ export async function getCharacterList({
   gender: string
 }) {
   try {
-    const response = await axiosInstance.get(
-      `/character?page=${page}&name=${searchTerm}&gender=${gender}`
+    const queryString = qs.stringify(
+      {
+        page,
+        name: searchTerm,
+        gender,
+      },
+      { filter: (prefix, value) => value || undefined }
     )
+
+    const response = await axiosInstance.get(`/character?${queryString}`)
 
     return response.data
   } catch (error) {
