@@ -1,6 +1,6 @@
 .character-page {
   width: 100%;
-  height: 90vh;
+  height: 60vh;
 
   min-width: 900px;
 
@@ -9,19 +9,30 @@
     height: 100%;
 
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 92px;
 
     justify-content: space-between;
 
     .container {
-      width: 33%;
+      width: auto;
       height: 300px;
     }
 
     .current-character {
       transform: scale(1.3);
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .character-page {
+    min-width: unset;
+
+    .prev-character,
+    .next-character {
+      display: none;
+      position: absolute;
     }
   }
 }

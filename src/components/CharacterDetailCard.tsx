@@ -34,7 +34,11 @@ function CharacterDetailCard({
     >
       <div className="character-name"> {name}</div>
       <div className="character-card-image-container">
-        <img className="character-image" src={image} />
+        <img
+          className="character-image"
+          src={image}
+          style={{ cursor: !isCurrent ? "pointer" : "default" }}
+        />
       </div>
       {isCurrent && (
         <div className="detail-container">

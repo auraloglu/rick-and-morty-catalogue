@@ -5,6 +5,7 @@
   margin: 12px;
 
   height: 100%;
+  max-width: 240px;
 
   cursor: pointer;
 
@@ -43,9 +44,6 @@
   }
 
   .character-card-image-container {
-    max-height: 240px;
-    height: 240px;
-
     position: relative;
     overflow: hidden;
 

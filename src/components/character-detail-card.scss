@@ -17,13 +17,16 @@
     flex-direction: column;
     gap: 8px;
     margin-top: 8px;
+    max-width: 250px;
 
     .detail {
       padding: 4px;
 
       border: 2px solid #13b1c5;
-      color: #13b1c5;
-      text-shadow: 1px 1px 2px #b0c366;
+
+      .label {
+        color: #13b1c5;
+      }
     }
   }
 }

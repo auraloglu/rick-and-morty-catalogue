@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
 import { getCharacter } from "@/api/rickAndMortyAPI"
+import { Button } from "@/components/ui/button"
 
 import "@/components/character-page.scss"
 import CharacterDetailCard from "./CharacterDetailCard"
@@ -94,6 +95,7 @@ function CharacterPage() {
 
   return (
     <div className="character-page">
+      <Button onClick={() => navigate("/")}>Back</Button>
       <div className="character-container">
         <div
           className="prev-character container"
