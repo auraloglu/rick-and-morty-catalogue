@@ -6,5 +6,4 @@
 
 # Demo
 
-You can see the demo [here.][here]
-[here]: https://rick-and-morty-catalogue-auraloglus-projects.vercel.app/ "here"
+You can see the demo [here](https://rick-and-morty-catalogue-auraloglus-projects.vercel.app/)
