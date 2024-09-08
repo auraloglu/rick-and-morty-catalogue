@@ -24,14 +24,14 @@ export async function getCharacterList({
         name: searchTerm,
         gender,
       },
-      { filter: (prefix, value) => value || undefined }
+      { filter: (value) => value || undefined }
     )
 
     const response = await axiosInstance.get(`/character?${queryString}`)
 
     return response.data
   } catch (error) {
-    const { response } = error
+    const { response }: any = error
     const { request, ...errorObject } = response // take everything but 'request'
     console.log(errorObject)
 
@@ -45,7 +45,7 @@ export async function getCharacter(id: number) {
 
     return response.data
   } catch (error) {
-    const { response } = error
+    const { response }: any = error
     const { request, ...errorObject } = response // take everything but 'request'
     console.log(errorObject)
 
