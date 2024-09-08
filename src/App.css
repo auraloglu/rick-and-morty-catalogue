@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "WubbaLubbaDubDub";
+  src: url("@/fonts/WubbaLubbaDubDub.ttf") format("opentype");
+}
+
 body {
   background-color: #001325 !important;
   color: white !important;
+
+  font-family: WubbaLubbaDubDub;
 }
 
 #root {
